@@ -36,9 +36,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, post, author_id, created)'
-                ' VALUES (?, ?, ?, ?)',
-                (title, post, g.user['id'], util.timestamp())
+                'INSERT INTO post (title, post, author_id, user_name, created)'
+                ' VALUES (?, ?, ?, ?, ?)',
+                (title, post, g.user['id'], g.user['username'], util.timestamp())
             )
             db.commit()
             return redirect(url_for('blog.index'))
@@ -93,7 +93,7 @@ def display_profile(profile_id):
 
 def get_post(id, check_author=False):
     post = get_db().execute(
-        'SELECT p.id, title, post, created, author_id, username'
+        'SELECT p.id, title, post, created, author_id, user_name'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
@@ -135,7 +135,7 @@ def display_post(post_id):
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO comment (author_id, username, post_id, comment, created)'
+                'INSERT INTO comment (author_id, user_name, post_id, comment, created)'
                 ' VALUES (?, ?, ?, ?, ?)',
                 (g.user['id'], g.user['username'], post_id, comment, util.timestamp())
             )

@@ -4,6 +4,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db
+from flaskr.util import timestamp
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -72,8 +73,9 @@ def register():
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password, name, surname, age) VALUES (?, ?, ?, ?, ?)',
-                (username, generate_password_hash(password), name, surname, age)
+                'INSERT INTO user (username, password, name, surname, age, created_timestamp)'
+                ' VALUES (?, ?, ?, ?, ?, ?)',
+                (username, generate_password_hash(password), name, surname, age, timestamp())
             )
             db.commit()
             del username, password

@@ -2,6 +2,9 @@
 
 {% block header %}
 <h1>{% block title %}{{ user.name }} {{ user.surname }}{% endblock %}</h1>
+    <div class="about">
+        Account created: {{ user.created_timestamp }}
+    </div>
 {% endblock %}
 
 {% block content %}

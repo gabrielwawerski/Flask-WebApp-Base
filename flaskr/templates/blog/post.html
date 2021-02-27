@@ -2,6 +2,9 @@
 
 {% block header %}
 <h3>{% block title %}{{ post['title'] }}{% endblock %}</h3>
+    <div class="about">by <a class="asimple" href="{{ url_for('blog.display_profile', profile_id=post['author_id']) }}">{{ post['user_name'] }}</a> on
+        {{ post['created'] }}
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +17,7 @@
     {% if comments %}
     {% for comment in comments %}
     <h6>{{ comment.comment }}</h6>
-    <div class="about">by <a href="{{ url_for('blog.display_profile', profile_id=comment['author_id']) }}">{{ comment['username'] }}</a> on
+    <div class="about">by <a class="asimple" href="{{ url_for('blog.display_profile', profile_id=comment['author_id']) }}">{{ comment['user_name'] }}</a> on
         {{ comment['created'] }}
     </div>
     {% if not loop.last %}

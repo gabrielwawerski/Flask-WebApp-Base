@@ -7,12 +7,14 @@ CREATE TABLE user (
   password TEXT NOT NULL,
   name TEXT NOT NULL,
   surname TEXT NOT NULL,
-  age INTEGER NOT NULL
+  age INTEGER NOT NULL,
+  created_timestamp TEXT NOT NULL
 );
 
 CREATE TABLE post (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author_id INTEGER NOT NULL,
+  user_name TEXT NOT NULL,
   created TEXT NOT NULL,
   title TEXT NOT NULL,
   post TEXT NOT NULL,
@@ -22,7 +24,7 @@ CREATE TABLE post (
 CREATE TABLE comment (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author_id INTEGER NOT NULL,
-  username TEXT NOT NULL,
+  user_name TEXT NOT NULL,
   post_id INTEGER NOT NULL,
   created TEXT NOT NULL,
   comment TEXT NOT NULL,
