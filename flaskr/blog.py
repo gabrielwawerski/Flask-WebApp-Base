@@ -135,9 +135,9 @@ def display_post(post_id):
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO comment (author_id, post_id, comment, created)'
-                ' VALUES (?, ?, ?, ?)',
-                (g.user['id'], post_id, comment, util.timestamp())
+                'INSERT INTO comment (author_id, username, post_id, comment, created)'
+                ' VALUES (?, ?, ?, ?, ?)',
+                (g.user['id'], g.user['username'], post_id, comment, util.timestamp())
             )
             db.commit()
             return redirect(url_for('blog.display_post', post_id=post_id))

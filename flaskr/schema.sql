@@ -22,6 +22,7 @@ CREATE TABLE post (
 CREATE TABLE comment (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author_id INTEGER NOT NULL,
+  username TEXT NOT NULL,
   post_id INTEGER NOT NULL,
   created TEXT NOT NULL,
   comment TEXT NOT NULL,
